@@ -16,7 +16,7 @@ import com.softlond.store.services.CategoryService;
 
 @RestController
 // Nos da la URL base para acceder a este servicio
-@RequestMapping("/category")
+@RequestMapping("/categorias")
 public class CategoryController {
 
     @Autowired
