@@ -28,11 +28,25 @@ public class CategoryService {
     public ResponseEntity<?> deleteCategory(Category category) {
         try {
             categoryRepository.delete(category);
-            return ResponseEntity.ok("Se eliminó correctamente");
+            return ResponseEntity.ok("La categoría se eliminó correctamente");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
 
+    }
+
+    public ResponseEntity<Category> updateCategory(Category updatedCategory) {
+        Category existingCategory = categoryRepository.findById(updatedCategory.getId()).orElse(null);
+
+        if (existingCategory != null) {
+            existingCategory.setName(updatedCategory.getName());
+
+            categoryRepository.save(existingCategory);
+            return ResponseEntity.ok(existingCategory);
+
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ import com.softlond.store.services.CategoryService;
 
 @RestController
 // Nos da la URL base para acceder a este servicio
-@RequestMapping("/categorias")
+@RequestMapping("/category")
 public class CategoryController {
 
     @Autowired
@@ -38,6 +39,9 @@ public class CategoryController {
         return categoryService.deleteCategory(category);
     }
 
-    // Update
+    @PutMapping("/update")
+    private ResponseEntity<Category> updateCategory(@RequestBody Category category) {
+        return categoryService.updateCategory(category);
+    }
 
 }
